@@ -1,0 +1,319 @@
+/* Phone layout, loaded on top of the PC app's styles.css. Same colors, reorganized for a portrait touch screen. */
+
+:root {
+  --tap: max(2.75rem, 44px);
+  --tab-bar: 56px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overscroll-behavior-y: none;
+  overflow-wrap: anywhere;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Bottom tabs */
+
+.top-bar {
+  position: fixed;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0 0 env(safe-area-inset-bottom);
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  width: 100%;
+}
+
+/* Tab labels stop growing past what four tabs can hold, whatever the text size. */
+.tab {
+  min-height: var(--tab-bar);
+  padding: 0;
+  border-top: 2px solid transparent;
+  border-bottom: none;
+  font-size: min(1rem, 4.2vw);
+}
+
+.tab-active {
+  border-top-color: var(--amber);
+  color: var(--amber);
+  font-weight: 600;
+}
+
+/* Layout */
+
+#view {
+  padding: var(--space-3);
+  padding-bottom: calc(var(--tab-bar) + env(safe-area-inset-bottom) + var(--space-5));
+}
+
+.panel {
+  padding: var(--space-3) var(--space-4);
+}
+
+.banner {
+  padding: var(--space-2) var(--space-3);
+}
+
+/* Large tap targets. Inputs stay at 16px or more, or the iPhone zooms in when one is tapped. */
+
+.btn {
+  min-height: var(--tap);
+  padding: var(--space-2) var(--space-3);
+  white-space: normal;
+}
+
+.btn-quiet {
+  min-width: var(--tap);
+  padding: var(--space-1) var(--space-2);
+  font-size: 1rem;
+}
+
+.btn-link {
+  min-height: var(--tap);
+}
+
+.input {
+  min-height: var(--tap);
+  padding: var(--space-2);
+  font-size: max(16px, 1rem);
+}
+
+.switch {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+@media (hover: none) {
+  .btn:hover:not(:disabled) {
+    border-color: var(--border);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+
+  .btn-quiet:hover:not(:disabled) {
+    border-color: transparent;
+    color: var(--muted);
+  }
+}
+
+/* Rules */
+
+.rule-row {
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.rule-text {
+  flex: 1 1 100%;
+}
+
+.rule-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.rule-editor {
+  flex-wrap: wrap;
+}
+
+.rule-editor .input {
+  flex: 1 1 100%;
+}
+
+.rules .rule-text {
+  min-height: var(--tap);
+  align-content: center;
+}
+
+/* Tucked away until "Reorder or delete" is tapped. The delete question always shows. */
+.panel:not(.rules-managing) > .rules .rule-actions:has(> .btn-quiet) {
+  display: none;
+}
+
+.rules-add + .btn {
+  margin-top: var(--space-2);
+}
+
+.rules-add {
+  display: inline-block;
+  margin-right: var(--space-2);
+}
+
+/* Day */
+
+.day-heading h1 {
+  font-size: 1.25rem;
+}
+
+.day-title {
+  flex-wrap: wrap;
+}
+
+.day-heading .button-row {
+  width: 100%;
+}
+
+.field-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.meal-plan .btn {
+  width: 100%;
+}
+
+.date-input {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.meal-badge,
+.meal-note {
+  display: inline-block;
+}
+
+.grocery-item {
+  min-height: var(--tap);
+}
+
+/* Calendar: one day per row, because seven columns can't fit a phone. */
+
+.week-grid {
+  grid-template-columns: minmax(0, 1fr);
+  font-size: 1rem;
+}
+
+.day-card {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-3);
+}
+
+.day-card-date {
+  grid-row: 1 / span 4;
+  padding-bottom: 0;
+  border-bottom: none;
+  border-right: 1px solid var(--border);
+}
+
+.day-card-detail {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 var(--space-2);
+}
+
+.day-card-meals {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 var(--space-3);
+  grid-column: 2;
+  margin-top: 0;
+  padding-top: var(--space-1);
+}
+
+/* Recipes */
+
+.picking-banner {
+  flex-wrap: wrap;
+}
+
+.recipe-basics {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.recipe-row {
+  flex-wrap: wrap;
+}
+
+.tag-chip {
+  min-height: var(--tap);
+  padding: 0 var(--space-3);
+}
+
+.tag-chip input {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Name on its own line, then amount and unit, then Remove. */
+.ingredient-row {
+  flex-wrap: wrap;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.ingredient-row input[aria-label='Ingredient name'] {
+  flex: 1 1 100%;
+  order: -1;
+}
+
+.ingredient-row .btn-quiet {
+  margin-left: auto;
+}
+
+.step-rows .input {
+  flex: 1 1 100%;
+}
+
+/* Settings */
+
+.tag-list .rule-text {
+  flex: 1 1 40%;
+  align-self: center;
+}
+
+.tag-list .rule-actions {
+  width: auto;
+}
+
+.slider {
+  max-width: none;
+  min-height: var(--tap);
+}
+
+.backup-status {
+  margin-bottom: var(--space-3);
+}
+
+.backup-overdue {
+  padding: var(--space-2) var(--space-3);
+  background: var(--terracotta);
+  border-radius: var(--radius);
+  color: var(--on-accent);
+}
+
+.backup-confirm {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.backup-confirm:not(:empty) {
+  margin-top: var(--space-3);
+}
+
+.app-version {
+  text-align: center;
+}

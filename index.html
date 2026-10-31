@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- connect-src 'none' stops the page from sending anything to any server. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; manifest-src 'self'; worker-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <title>Daily Planner</title>
+    <meta name="description" content="A private offline daily planner." />
+    <meta name="theme-color" content="#1e1a16" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Planner" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/icon-180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="phone.css" />
+  </head>
+  <body>
+    <header class="top-bar">
+      <nav class="tabs" aria-label="Screens">
+        <button class="tab" data-view="day">Today</button>
+        <button class="tab" data-view="calendar">Calendar</button>
+        <button class="tab" data-view="recipes">Recipes</button>
+        <button class="tab" data-view="settings">Settings</button>
+      </nav>
+    </header>
+    <div id="save-warning" class="banner" role="alert" hidden>
+      Your latest changes could not be saved yet. The app keeps retrying. Don't close it until this message goes away.
+    </div>
+    <div id="notices"></div>
+    <main id="view"></main>
+
+    <script src="dates.js"></script>
+    <script src="ui.js"></script>
+    <script src="mealPlan.js"></script>
+    <script src="dayView.js"></script>
+    <script src="calendarView.js"></script>
+    <script src="recipesView.js"></script>
+    <script src="tagsView.js"></script>
+    <script src="settingsView.js"></script>
+    <script src="version.js"></script>
+    <script src="shared-data.js"></script>
+    <script src="phoneStorage.js"></script>
+    <script src="phoneSettings.js"></script>
+    <script src="phoneApp.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
